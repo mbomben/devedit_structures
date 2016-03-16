@@ -1,0 +1,125 @@
+DevEdit version=2.8.15.R # file written Tue Jul 9 2013 10:54:38 GMT+1 (BST)
+
+work.area x1=0 y1=0 x2=0 y2=0
+# devedit 2.8.15.R (Mon Mar 25 19:17:49 PDT 2013)
+# libMeshBuild 1.24.14 (Mon Mar 25 19:17:36 PDT 2013)
+# libSSS 2.8.6 (Sun Mar 17 08:55:11 PDT 2013)
+# libSVC_Misc 1.28.7 (Fri Nov 16 03:51:43 PST 2012)
+# libsflm 7.8.8 (Fri Nov 30 01:32:02 PST 2012)
+# libSDB 1.12.18 (Fri Nov 30 18:32:17 PST 2012)
+# libGeometry 1.30.6 (Thu Nov 15 11:45:29 PST 2012)
+# libCardDeck 1.32.10 (Sun Mar 17 08:50:47 PDT 2013)
+# libDW_Set 1.28.8 (Thu Nov 15 11:43:51 PST 2012)
+# libSvcFile 1.14.7 (Thu Nov 15 11:45:37 PST 2012)
+# libsstl 1.10.0 (Thu Nov 15 11:45:44 PST 2012)
+# libDW_Misc 1.40.6 (Fri Nov 16 00:47:46 PST 2012)
+# libQSilCore 1.2.3 (Thu Nov 15 11:40:46 PST 2012)
+# liberror 1.0.6 (Thu Nov 15 11:40:44 PST 2012)
+# libDW_Version 3.6.0 (Tue Nov 13 08:26:35 PST 2012)
+region reg=1 name=oxide mat=SiO2 color=0xff pattern=0x2 z1=0 z2=0.1 \
+	polygon="1.352,190.429 1.359,190.429 2.703,190.216 4.017,189.864 5.288,189.376 6.5,188.758 7.641,188.017 8.699,187.161 9.661,186.199 10.517,185.141 "\
+	"11.258,184 11.876,182.788 12.364,181.517 12.716,180.203 12.929,178.859 13,177.5 13,0 25,0 25,200 0,200 "\
+	"0,190.5"
+#
+constr.mesh region=1 default
+
+region reg=2 name=PX1 mat=Aluminum elec.id=1 work.func=0 color=0xffc7c6 pattern=0x7 z1=0 z2=0.1 \
+	polygon="0,0 13,0 13,177.5 0,177.5"
+#
+constr.mesh region=2 default
+
+region reg=3 name=PX1 mat=Aluminum elec.id=2 work.func=0 color=0xffc7c6 pattern=0x7 z1=0 z2=0.1 \
+	polygon="0,177.5 13,177.5 12.929,178.859 12.716,180.203 12.364,181.517 11.876,182.788 11.258,184 10.517,185.141 9.661,186.199 8.699,187.161 "\
+	"7.641,188.017 6.5,188.758 5.288,189.376 4.017,189.864 2.703,190.216 1.359,190.429 1.352,190.429 0,190.5"
+#
+constr.mesh region=3 default
+
+region reg=4 name=bulk mat=Silicon color=0xffcb00 pattern=0x4 z1=0.1 z2=249.9 \
+	polygon="0,0 13,0 25,0 25,200 0,200 0,190.5 0,177.5"
+#
+impurity id=1 region.id=4 imp=Phosphorus \
+	peak.value=1000000000000 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=4 default
+
+region reg=5 name=HV mat=Aluminum elec.id=3 work.func=0 color=0xffc7c6 pattern=0x7 z1=249.9 z2=250 \
+	polygon="0,0 13,0 25,0 25,200 0,200 0,190.5 0,177.5"
+#
+constr.mesh region=5 default
+
+impurity id=1 imp=Boron color=0x8c5d00 \
+	peak.value=1e+17 ref.value=1e+15 comb.func=Multiply \
+	y1=0 y2=200 rolloff.y=both conc.func.y="Gaussian (Dist)" conc.param.y=0.2 \
+	x1=0 x2=25 rolloff.x=both conc.func.x="Gaussian (Dist)" conc.param.x=0.2 \
+	z1=0.1 z2=0.1 rolloff.z=high conc.func.z="Gaussian (Dist)" conc.param.z=0.2
+impurity id=2 imp=Boron color=0x8c5d00 \
+	peak.value=2e+19 ref.value=1e+15 comb.func=Multiply \
+	y1=0 y2=200 rolloff.y=both conc.func.y="Gaussian (Dist)" conc.param.y=1.2 \
+	x1=0 x2=25 rolloff.x=both conc.func.x="Gaussian (Dist)" conc.param.x=1.2 \
+	z1=249.9 z2=249.9 rolloff.z=low conc.func.z="Gaussian (Dist)" conc.param.z=1.2
+impurity id=3 imp=Phosphorus color=0x8a00 \
+	peak.value=2e+19 ref.value=1e+16 comb.func=Multiply \
+	y1=0 y2=177 rolloff.y=both conc.func.y="Gaussian (Dist)" conc.param.y=1 \
+	x1=0 x2=13 rolloff.x=both conc.func.x="Gaussian (Dist)" conc.param.x=1 \
+	z1=0.1 z2=0.1 rolloff.z=high conc.func.z="Gaussian (Dist)" conc.param.z=1
+impurity id=4 imp=Phosphorus color=0x8a00 \
+	peak.value=2e+19 ref.value=1e+16 comb.func=Multiply \
+	z1=0.1 z2=0.1 rolloff.z=high conc.func.z="Gaussian (Dist)" conc.param.z=1 \
+	x=0 y=177.5 r1=13 rolloff.r1=high conc.func.r1="Gaussian (Dist)" conc.param.r1=1
+
+# Set Meshing Parameters
+#
+base.mesh height=12 width=5
+#
+bound.cond !apply max.slope=28 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.points when=automatic
+#
+imp.refine imp="Net Doping" scale=log sensitivity=0.14 transition=50.1187
+imp.refine min.spacing=0.02 z=0
+#
+constr.mesh max.angle=90 max.ratio=300 max.height=10000 \
+	max.width=10000 min.height=0.0001 min.width=0.0001
+#
+constr.mesh type=Semiconductor default
+#
+constr.mesh type=Insulator default
+#
+constr.mesh type=Metal default
+#
+constr.mesh type=Other default
+#
+constr.mesh region=1 default
+#
+constr.mesh region=2 default
+#
+constr.mesh region=3 default
+#
+constr.mesh region=4 default
+#
+constr.mesh region=5 default
+constr.mesh id=1 x1=11 y1=0 x2=16 y2=200 default max.height=10 max.width=1 \
+	min.height=10 min.width=1
+constr.mesh id=2 x1=12.5 y1=0 x2=14 y2=200 default max.height=10 max.width=0.5 \
+	min.height=10 min.width=0.5
+constr.mesh id=3 x1=0 y1=180 x2=16 y2=200 default max.height=1 max.width=1 \
+	min.height=1 min.width=1
+Mesh Mode=MeshBuild
+#
+z.plane z=0 spacing=0.1
+z.plane z=0.1 spacing=0.01
+z.plane z=1 spacing=0.05
+z.plane z=2 spacing=0.1
+z.plane z=3 spacing=0.5
+z.plane z=5 spacing=1
+z.plane z=120 spacing=20
+z.plane z=240 spacing=1
+z.plane z=245 spacing=0.5
+z.plane z=248 spacing=0.1
+z.plane z=249 spacing=0.01
+z.plane z=249.9 spacing=0.1
+z.plane max.spacing=1000000 max.ratio=10
+
+
+base.mesh height=12 width=5
+
+bound.cond !apply max.slope=28 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.Points when=automatic
+
