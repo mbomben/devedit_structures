@@ -1,0 +1,116 @@
+DevEdit version=2.8.17.R # file written Wed Feb 10 2016 18:50:59 GMT+1 (CET)
+
+work.area x1=-25.16 y1=-2 x2=25.16 y2=200.64
+# devedit 2.8.17.R (Tue Sep 24 21:06:58 PDT 2013)
+# libMeshBuild 1.24.16 (Tue Sep 24 21:06:41 PDT 2013)
+# libSSS 2.8.8 (Tue Sep 10 16:24:05 PDT 2013)
+# libSVC_Misc 1.28.9 (Tue Sep 10 01:49:49 PDT 2013)
+# libsflm 7.8.9 (Thu Jun 27 19:10:25 PDT 2013)
+# libSDB 1.12.22 (Tue Sep 10 01:36:05 PDT 2013)
+# libGeometry 1.30.7 (Wed Jun 26 22:23:17 PDT 2013)
+# libCardDeck 1.32.12 (Fri Sep  6 14:53:16 PDT 2013)
+# libDW_Set 1.28.9 (Wed Jun 26 22:21:52 PDT 2013)
+# libSvcFile 1.14.9 (Wed Jun 26 22:23:25 PDT 2013)
+# libsstl 1.10.2 (Wed Jul 17 01:23:51 PDT 2013)
+# libDW_Misc 1.40.9 (Fri Aug 23 05:19:42 PDT 2013)
+# libQSilCore 1.2.4 (Mon Jul  8 15:46:31 PDT 2013)
+# libDW_Version 3.6.0 (Tue Nov 13 08:26:35 PST 2012)
+
+# User defined 1D doping profiles#
+profile name="MultProfile" d.p=0,1.14015e+16 \
+	d.p=0.133347,1.22248e+16 d.p=0.231815,1.21662e+16 \
+	d.p=0.315966,1.18909e+16 d.p=0.392084,1.15323e+16 \
+	d.p=0.463007,1.11378e+16 d.p=0.53035,1.07059e+16 \
+	d.p=0.595249,1.02936e+16 d.p=0.658271,9.81855e+15 \
+	d.p=0.720303,9.39425e+15 d.p=0.781459,8.95894e+15 \
+	d.p=0.842173,8.52066e+15 d.p=0.902804,8.07637e+15 \
+	d.p=0.963695,7.64381e+15 d.p=1.02507,7.24785e+15 \
+	d.p=1.086927,6.77373e+15 d.p=1.150253,6.38496e+15 \
+	d.p=1.214589,5.95158e+15 d.p=1.280756,5.5564e+15 \
+	d.p=1.34873,5.11698e+15 d.p=1.419546,4.71686e+15 \
+	d.p=1.493232,4.15656e+15 d.p=1.573363,3.88872e+15 \
+	d.p=1.655449,3.49626e+15 d.p=1.742907,3.10061e+15 \
+	d.p=1.83721,2.70731e+15 d.p=1.940355,2.30129e+15 \
+	d.p=2.055901,1.92661e+15 d.p=2.186873,1.54011e+15 \
+	d.p=2.341596,1.18462e+15 d.p=2.530225,788787000000000 \
+	d.p=2.791646,416240000000000 d.p=3.235066,61197000000000 \
+	d.p=5.401737,731612000000 
+
+region reg=1 name=Oxide mat=SiO2 color=0xff pattern=0x2 \
+	polygon="-25,0 25,0 25,-0.4 -25,-0.4"
+	#polygon="12,-0.4 25,-0.4 25,0 12,0" \
+	#polygon="-12,0 -25,0 -25,-0.4 -12,-0.4"
+#
+constr.mesh region=1 default
+
+region reg=2 name=bulk mat=Silicon color=0xffcb00 pattern=0x4 \
+	polygon="-25,0 -12,0 12,0 25,0 25,200 -25,200"
+#
+impurity id=1 region.id=2 imp=Acceptors \
+	peak.value=1000000000000 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=2 default
+
+region reg=3 name=PAD mat=Aluminum elec.id=1 work.func=0 color=0xffc7c6 pattern=0x7 \
+	polygon="-12,-0.4 -12,-0.2 -10,-0.2 -10,0 10,0 10,-0.2 12,-0.2 12,-0.4"
+	#polygon="-12,-0.4 12,-0.4 12,0 -12,0"
+#
+constr.mesh region=3 default
+
+region reg=4 name=HV mat=Aluminum elec.id=2 work.func=0 color=0xffc7c6 pattern=0x7 \
+	polygon="-25,200 25,200 25,200.4 -25,200.4"
+#
+constr.mesh region=4 default
+
+impurity id=1 imp=Boron color=0x7d00 \
+	peak.value=2e+19 ref.value=1e+16 comb.func=Multiply \
+	y1=200 y2=200 rolloff.y=low conc.func.y="Gaussian (Dist)" conc.param.y=1 \
+	x1=-25 x2=25 rolloff.x=both conc.func.x="Gaussian (Dist)" conc.param.x=1
+impurity id=2 imp=Phosphorus color=0x634500 \
+	peak.value=2e+19 ref.value=1e+16 comb.func=Multiply \
+	y1=0 y2=0 rolloff.y=high conc.func.y="Gaussian (Dist)" conc.param.y=1.0 \
+	x1=-10 x2=10 rolloff.x=both conc.func.x="Gaussian (Dist)" conc.param.x=1
+# MULT implant
+impurity id=3 imp=Boron color=0x8c5d00 \
+	peak.value=1.14015e+16 ref.value=3344910000000 comb.func=Multiply \
+	y1=1 y2=1.5 rolloff.y=high conc.func.y="MultProfile" conc.param.y="Log Extrapolate" \
+	x1=-8.31 x2=8.31 rolloff.x=both conc.func.x="Gaussian (Dist)" conc.param.x=0.831
+
+
+# Set Meshing Parameters
+#
+base.mesh height=1 width=5
+#
+bound.cond !apply max.slope=30 max.ratio=20 rnd.unit=0.001 line.straightening=1 align.points when=automatic
+#
+imp.refine imp=Phosphorus scale=log transition=1e+11
+imp.refine imp=Boron scale=log transition=10
+imp.refine imp="Net Doping" scale=log sensitivity=0.5 transition=1e+09
+imp.refine min.spacing=0.02
+#
+constr.mesh max.angle=90 max.ratio=300 max.height=1000 \
+	max.width=1000 min.height=0.0001 min.width=0.0001
+#
+constr.mesh type=Semiconductor default
+#
+constr.mesh type=Insulator default
+#
+constr.mesh type=Metal default
+#
+constr.mesh type=Other default
+#
+constr.mesh region=1 default
+#
+constr.mesh region=2 default
+#
+constr.mesh region=3 default
+#
+constr.mesh region=4 default
+Mesh Mode=MeshBuild
+refine mode=both x1=-12.2 y1=-0.06 x2=12.11 y2=1.06
+
+
+base.mesh height=1 width=5
+
+bound.cond !apply max.slope=30 max.ratio=20 rnd.unit=0.001 line.straightening=1 align.Points when=automatic
+
