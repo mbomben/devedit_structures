@@ -69,7 +69,7 @@ region reg=5 name=PX3 mat=Aluminum elec.id=4 work.func=0 color=0xffc8c8 pattern=
 #
 constr.mesh region=5 default
 
-region reg=6 name=PX4 mat=Aluminum elec.id=5 work.func=0 color=0xffc8c8 pattern=0x7 \
+region reg=6 name=PX4 mat=Aluminum elec.id=5 work.func=0 color=0xffc8c8 pattern=0x7 z1=-0.2 z2=0.0 \
 	polygon="25,25 5,25 5.0030461,24.6509519 5.0121835,24.3020101 5.0274093,23.9532809 5.048719,23.6048705 5.076106,23.2568851 5.1095621,22.9094307 5.149077,22.5626131 5.1946386,22.216538 "\
 	"5.2462332,21.8713107 5.3038449,21.5270364 5.3674563,21.1838201 5.437048,20.8417662 5.5125987,20.5009789 5.5940855,20.1615621 5.6814835,19.8236191 5.7747661,19.4872529 5.8739049,19.1525659 5.9788697,18.8196601 "\
 	"6.0896285,18.4886369 6.2061476,18.1595971 6.3283915,17.832641 6.4563229,17.5078681 6.5899029,17.1853774 6.7290908,16.8652671 6.8738443,16.5476348 7.0241191,16.2325771 7.1798695,15.92019 7.3410481,15.6105687 "\
@@ -138,8 +138,8 @@ base.mesh height=10 width=5
 #
 bound.cond !apply max.slope=28 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.points when=automatic
 #
-imp.refine imp="Net Doping" scale=log sensitivity=0.14 transition=50.1187
-imp.refine min.spacing=0.02 z=0
+imp.refine imp="Net Doping" scale=log sensitivity=1 transition=1e11
+imp.refine min.spacing=0.05 z=0
 #
 constr.mesh max.angle=90 max.ratio=300 max.height=10000 \
 	max.width=10000 min.height=0.0001 min.width=0.0001
