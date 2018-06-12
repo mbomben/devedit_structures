@@ -1,0 +1,95 @@
+DevEdit version=2.8.26.R # file written Tue Jun 12 2018 23:04:52 GMT+2 (CEST)
+
+work.area x1=-5 y1=-5 x2=5 y2=5
+# devedit 2.8.26.R (Tue Jan 26 05:23:40 PST 2016)
+# libMeshBuild 1.24.23 (Tue Jan 26 05:22:55 PST 2016)
+# libSSS 2.8.14 (Tue Jan 19 16:38:10 PST 2016)
+# libSVC_Misc 1.28.13 (Tue Jan 19 16:37:06 PST 2016)
+# libsflm 7.10.1 (Tue May 19 19:52:32 PDT 2015)
+# libSDB 1.12.36 (Wed Jan 13 04:01:54 PST 2016)
+# libGeometry 1.30.16 (Tue May 19 19:51:51 PDT 2015)
+# libCardDeck 1.32.22 (Fri Jan 22 18:42:45 PST 2016)
+# libDW_Set 1.28.13 (Tue Jan 19 16:36:26 PST 2016)
+# libSvcFile 1.14.19 (Tue May 19 19:51:56 PDT 2015)
+# libsstl 1.10.11 (Tue May 19 19:51:57 PDT 2015)
+# libDW_Misc 1.40.20 (Tue Jan 19 16:14:10 PST 2016)
+# libQSilCore 1.2.8 (Wed May 13 18:39:12 PDT 2015)
+# libDW_crypt 3.0.0 (Mon May 18 04:43:00 PDT 2015)
+# libDW_Version 3.8.0 (Fri Oct  3 16:08:41 PDT 2014)
+region reg=1 name=bulk mat=Silicon color=0xffcc00 pattern=0x4 z1=0 z2=200 \
+polygon="3,0 2.83745,0.974098 2.36742,1.84264 1.64084,2.5115 0.736456,2.9082 -0.247738,2.98975 -1.20509,2.74732 -2.03184,2.20717 -2.63842,1.42784 -2.95908,0.493784 -2.95908,-0.493784 -2.63842,-1.42784 -2.03184,-2.20717 -1.20509,-2.74732 -0.247738,-2.98975 0.736456,-2.9082 1.64084,-2.5115 2.36742,-1.84264 2.83745,-0.974098 3,-7.34788e-16"
+#
+constr.mesh region=1 default
+
+region reg=2 name=oxide mat=SiO2 color=0xff pattern=0x2 z1=-0.8 z2=0 \
+polygon="3,0 2.83745,0.974098 2.36742,1.84264 1.64084,2.5115 0.736456,2.9082 -0.247738,2.98975 -1.20509,2.74732 -2.03184,2.20717 -2.63842,1.42784 -2.95908,0.493784 -2.95908,-0.493784 -2.63842,-1.42784 -2.03184,-2.20717 -1.20509,-2.74732 -0.247738,-2.98975 0.736456,-2.9082 1.64084,-2.5115 2.36742,-1.84264 2.83745,-0.974098 3,-7.34788e-16"
+#
+constr.mesh region=2 default
+
+region reg=3 name=pad mat=Aluminum elec.id=1 work.func=0 color=0xffc8c8 pattern=0x7 z1=-1 z2=0 \
+	polygon="2,0 1.89163,0.649399 1.57828,1.22843 1.0939,1.67433 0.490971,1.9388 -0.165159,1.99317 -0.803391,1.83155 -1.35456,1.47145 -1.75895,0.951895 -1.97272,0.329189 -1.97272,-0.329189 -1.75895,-0.951895 -1.35456,-1.47145 -0.803391,-1.83155 -0.165159,-1.99317 0.490971,-1.9388 1.0939,-1.67433 1.57828,-1.22843 1.89163,-0.649399 2,-4.89859e-16"
+#
+constr.mesh region=3 default
+
+region reg=4 name=hv mat=Aluminum elec.id=2 work.func=0 color=0xffc8c8 pattern=0x7 z1=200 z2=201 \
+polygon="3,0 2.83745,0.974098 2.36742,1.84264 1.64084,2.5115 0.736456,2.9082 -0.247738,2.98975 -1.20509,2.74732 -2.03184,2.20717 -2.63842,1.42784 -2.95908,0.493784 -2.95908,-0.493784 -2.63842,-1.42784 -2.03184,-2.20717 -1.20509,-2.74732 -0.247738,-2.98975 0.736456,-2.9082 1.64084,-2.5115 2.36742,-1.84264 2.83745,-0.974098 3,-7.34788e-16"
+#
+constr.mesh region=4 default
+
+impurity id=1 imp=Boron color=0x8c5d00 \
+	peak.value=1e+17 ref.value=1e+15 comb.func=Multiply \
+	x=0 y=0 r1=2.8844410203712 rolloff.r1=high conc.func.r1="Gaussian (Dist)" conc.param.r1=1 \
+	z1=0 z2=0 rolloff.z=high conc.func.z="Gaussian (Dist)" conc.param.z=0.5
+impurity id=2 imp=Phosphorus color=0x8c5d00 \
+	peak.value=1e+19 ref.value=1000000000000 comb.func=Multiply \
+	x=0 y=0 r1=1.7492855684536 rolloff.r1=high conc.func.r1="Gaussian (Dist)" conc.param.r1=0.5 \
+	z1=0 z2=0 rolloff.z=high conc.func.z="Gaussian (Dist)" conc.param.z=1
+impurity id=3 imp=Boron color=0x8c5d00 \
+	peak.value=1e+19 ref.value=1000000000000 comb.func=Multiply \
+	x=0 y=0 r1=2.860069929215 rolloff.r1=high conc.func.r1="Gaussian (Dist)" conc.param.r1=0.5 \
+	z1=200 z2=200 rolloff.z=low conc.func.z="Gaussian (Dist)" conc.param.z=1
+impurity id=4 reg.id=1 imp=Boron color=0xffffff \ 
+	peak.value=1e+12 ref.value=1e+12 comb.func=Multiply
+
+# Set Meshing Parameters
+#
+base.mesh height=1 width=1
+#
+bound.cond !apply max.slope=28 max.ratio=300 rnd.unit=0.001 line.straightening=1 align.points when=automatic
+#
+imp.refine imp="Net Doping" scale=log sensitivity=1 transition=1e+07
+#imp.refine min.spacing=0.02 z=0
+#
+constr.mesh max.angle=90 max.ratio=300 max.height=10000 \
+	max.width=10000 min.height=0.0001 min.width=0.0001
+#
+constr.mesh type=Semiconductor default
+#
+constr.mesh type=Insulator default
+#
+constr.mesh type=Metal default
+#
+constr.mesh type=Other default
+#
+constr.mesh region=1 default
+#
+constr.mesh region=2 default
+#
+constr.mesh region=3 default
+#
+constr.mesh region=4 default
+#
+z.plane z=0 spacing=0.1
+z.plane z=2 spacing=0.5
+z.plane z=5 spacing=5
+z.plane z=10 spacing=20
+z.plane z=198.9 spacing=20
+z.plane z=199 spacing=0.2
+z.plane z=200 spacing=0.5
+z.plane max.spacing=1000000 max.ratio=1.5
+
+
+base.mesh height=2 width=2
+
+bound.cond !apply max.slope=28 max.ratio=300 rnd.unit=0.001 line.straightening=1 align.Points when=automatic
+
